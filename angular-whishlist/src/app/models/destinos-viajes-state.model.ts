@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DestinoViaje } from './destino-viaje.model';
 
@@ -18,7 +18,7 @@ export const initializeDestinosViajesState = function() {
     loading: false,
     favorito: null
   };
-};
+}
 
 // ACCIONES
 export enum DestinosViajesActionTypes {
@@ -62,9 +62,8 @@ export function reducerDestinosViajes(
       return {
           ...state,
           items: [...state.items, (action as NuevoDestinoAction).destino ]
-        };
+      };
     }
-    
     case DestinosViajesActionTypes.ELEGIDO_FAVORITO: {
         state.items.forEach(x => x.setSelected(false));
         const fav: DestinoViaje = (action as ElegidoFavoritoAction).destino;
@@ -83,7 +82,7 @@ export function reducerDestinosViajes(
     const d: DestinoViaje = (action as VoteDownAction).destino;
     d.voteDown();
     return { ...state };
-  }
+    }
   }
   return state;
 }

@@ -4,19 +4,24 @@ export class DestinoViaje {
   selected: boolean;
   servicios: string[];
   id = uuid();
+
   constructor(public nombre: string, public imagenUrl: string, public votes: number = 0){ 
 	  this.servicios = ['pileta', 'desayuno'];
   }
+
+  isSelected() {
+    return this.selected;
+  }
+
   setSelected(s: boolean){
 	 this.selected = s;
   }
-  isSelected(){
-	 return this.selected;
-   }
-   voteUp() {
-     this.votes++;
-    }
-    voteDown() {
-     this.votes--;
-    }
+
+  voteUp() {
+    this.votes++;
+  }
+
+  voteDown() {
+    this.votes--;
+  }
 }

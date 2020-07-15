@@ -24,15 +24,13 @@ export class FormDestinoViajeComponent implements OnInit {
         this.nombreValidator,
         this.nombreValidatorParametrizable(this.minLongitud)
       ])],
-      url: [''],
+      url: ['']
     });
 
     this.fg.valueChanges.subscribe((form: any) => {
       console.log('cambio en el formulario: ', form);
     });
   }
-
-  
 
   ngOnInit(): void {
     let elemNombre = <HTMLInputElement>document.getElementById('nombre');
@@ -57,7 +55,7 @@ export class FormDestinoViajeComponent implements OnInit {
   }
 
 
-  nombreValidator(control: FormControl): { [s: string]: boolean} {
+  nombreValidator(control: FormControl): { [s: string]: boolean } {
     const l = control.value.toString().trim().length;
     if( l > 0 && l < 5){
       return { invalidNombre: true};
@@ -66,13 +64,13 @@ export class FormDestinoViajeComponent implements OnInit {
   }
 
   nombreValidatorParametrizable(minLong: number): ValidatorFn{
-    return (control: FormControl): {[s: string]: Boolean} | null => {
+    return (control: FormControl): { [s: string]: Boolean} | null => {
       const l = control.value.toString().trim().length;
       if( l > 0 && l < minLong){
-        return { minLongNombre: true};
+        return { minLongNombre: true };
       }
       return null;
-    }
+    };
   }
 
 }

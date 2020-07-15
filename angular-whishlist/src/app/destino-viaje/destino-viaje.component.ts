@@ -11,7 +11,7 @@ import { VoteUpAction, VoteDownAction } from '../models/destinos-viajes-state.mo
 })
 export class DestinoViajeComponent implements OnInit {
   @Input() destino: DestinoViaje;
-  @Input("dx") position: number;
+  @Input("idx") position: number;
   @HostBinding('attr.class') cssClass = 'col-md-4';
   @Output() onClicked: EventEmitter<DestinoViaje>;
 
