@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { DestinoViaje } from '../models/destino-viaje.model';
+import { DestinoViaje } from '../../models/destino-viaje.model';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn } from '@angular/forms';
 import { fromEvent } from 'rxjs';
 import { map, filter, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -29,6 +29,10 @@ export class FormDestinoViajeComponent implements OnInit {
 
     this.fg.valueChanges.subscribe((form: any) => {
       console.log('cambio en el formulario: ', form);
+    });
+
+    this.fg.controls['nombre'].valueChanges.subscribe((value: string) => {
+      console.log('Nombre cambio: ', value);
     });
   }
 

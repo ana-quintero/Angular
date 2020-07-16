@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DestinosApiClient } from './../models/destinos-api-client.model';
-import { DestinoViaje } from './../models/destino-viaje.model';
+import { DestinosApiClient } from './../../models/destinos-api-client.model';
+import { DestinoViaje } from './../../models/destino-viaje.model';
 import { ActivatedRoute } from '@angular/router';
-import { AppState } from '../app.module';
+import { AppState } from '../../app.module';
 
 @Component({
   selector: 'app-destino-detalle',
