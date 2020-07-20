@@ -16,7 +16,10 @@ export class ListaDestinosComponent implements OnInit {
   updates: string[];
   all;
   
-  constructor(private destinosApiClient: DestinosApiClient, private store: Store<AppState>) {
+  constructor(
+    private destinosApiClient: DestinosApiClient,
+    private store: Store<AppState>
+    ) {
     this.onItemAdded = new EventEmitter();
     this.updates = [];
    
@@ -27,8 +30,8 @@ export class ListaDestinosComponent implements OnInit {
     this.store.select(state => state.destinos.favorito)
     .subscribe(data => {
       const f = data;
-      if(data != null){
-        this.updates.push('Se ha elegido a ' + f.nombre);
+      if(f != null){
+        this.updates.push('Se eligio a ' + f.nombre);
       }
     });
   }

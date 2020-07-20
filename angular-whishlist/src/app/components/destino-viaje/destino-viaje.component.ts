@@ -12,7 +12,7 @@ import { VoteUpAction, VoteDownAction } from '../../models/destinos-viajes-state
 export class DestinoViajeComponent implements OnInit {
   @Input() destino: DestinoViaje;
   @Input("idx") position: number;
-  @HostBinding('attr.class') cssClass = 'col-md-4';
+  @HostBinding('attr.class') cssClass = 'col-md-4 card-top';
   @Output() onClicked: EventEmitter<DestinoViaje>;
 
   constructor(private store: Store<AppState>) {

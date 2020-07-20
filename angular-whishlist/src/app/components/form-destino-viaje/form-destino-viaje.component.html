@@ -1,6 +1,7 @@
 <form
 [formGroup]="fg"
-(ngSubmit)="guardar(fg.controls['nombre'].value,
+(ngSubmit)="guardar(
+            fg.controls['nombre'].value,
             fg.controls['url'].value)">
     <div class="form-group">
         <label for="nombre">Nombre</label>
@@ -9,9 +10,9 @@
             <ul>
                 <li *ngFor="let r of searchResults;">{{r}}</li>
             </ul>
-            <div class="text-danger" *ngIf="fg.controls['nombre'].hasError('required')">nombre requerido!</div>
-            <div class="text-danger" *ngIf="fg.controls['nombre'].hasError('invalidNombre')">nombre invalido!</div>
-            <div *ngIf="fg.controls['nombre'].hasError('minLongNombre')">nombre debe tener al menos {{minLongitud}} de largo!</div>
+            <div *ngIf="fg.controls['nombre'].hasError('required')" class="alert alert-danger" role="alert">nombre es obligatorio!</div>
+            <div *ngIf="fg.controls['nombre'].hasError('invalidNombre')" class="alert alert-danger" role="alert"> el nombre es invalido!</div>
+            <div *ngIf="fg.controls['nombre'].hasError('minLongNombre')" class="alert alert-danger" role="alert">nombre debe tener al menos {{minLongitud}} de largo!</div>
     </div>
     <div class="form-group">
         <label for="Imagen Url">Imagen Url</label>
