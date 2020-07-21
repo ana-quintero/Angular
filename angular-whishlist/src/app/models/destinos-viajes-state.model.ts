@@ -56,7 +56,7 @@ export class InitMyDataAction implements Action {
 }
 
 export type DestinosViajesActions = NuevoDestinoAction | ElegidoFavoritoAction
-  | VoteUpAction | VoteDownAction |InitMyDataAction;
+  | VoteUpAction | VoteDownAction | InitMyDataAction;
   
 
 // REDUCERS

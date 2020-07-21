@@ -55,14 +55,14 @@ export class FormDestinoViajeComponent implements OnInit {
   }
 
   guardar(nombre: string, url: string): boolean{
-    let d = new DestinoViaje(nombre, url);
+    const d = new DestinoViaje(nombre, url);
     this.onItemAdded.emit(d);
     return false;
   }
 
 
   nombreValidator(control: FormControl): { [s: string]: boolean } {
-    let l = control.value.toString().trim().length;
+    const l = control.value.toString().trim().length;
     if( l > 0 && l < 5){
       return { invalidNombre: true};
     }
@@ -70,7 +70,7 @@ export class FormDestinoViajeComponent implements OnInit {
   }
 
   nombreValidatorParametrizable(minLong: number): ValidatorFn{
-    return (control: FormControl): { [s: string]: Boolean} | null => {
+    return (control: FormControl): { [key: string]: boolean} | null => {
       const l = control.value.toString().trim().length;
       if( l > 0 && l < minLong){
         return { minLongNombre: true };
