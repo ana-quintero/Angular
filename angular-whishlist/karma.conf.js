@@ -32,7 +32,7 @@ module.exports = function (config) {
         flags: ['--no-sandbox', '--disable-gpu', '--disable-translate', '--disable-extensions', '--remote-debugging-port=9223']
       }
     }, 
-    //singleRun: false,
+    singleRun: false,
     //restartOnFileChange: true
   });
 };
