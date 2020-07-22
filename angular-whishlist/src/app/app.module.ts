@@ -8,6 +8,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule, HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import Dexie from 'dexie';
 import { TranslateService, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,16 +38,8 @@ import { ReservasModule } from './reservas/reservas.module';
 import { DestinoViaje } from './models/destino-viaje.model';
 import { from, Observable } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
-
-// app config
-export interface AppConfig{
-  apiEndpoint: String;
-}
-const APP_CONFIG_VALUE: AppConfig = {
-  apiEndpoint: 'http://localhost:3000'
-};
-export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
-//fin app config
+import { EspiameDirective } from './espiame.directive';
+import { TrackearClickDirective } from './trackear-click.directive';
 
 //init routing
 export const childrenRoutesVuelos: Routes = [
@@ -71,19 +66,15 @@ const routes: Routes = [
 ];
 //fin routing
 
-// redux init
-export interface AppState {
-  destinos: DestinosViajesState;
+// app config
+export interface AppConfig {
+  apiEndpoint: String;
 }
-
-const reducers: ActionReducerMap<AppState> = {
-  destinos: reducerDestinosViajes
+const APP_CONFIG_VALUE: AppConfig = {
+  apiEndpoint: 'http://localhost:3000'
 };
-
-const reducersInitialState = {
-  destinos: initializeDestinosViajesState()
-};
-// redux fin init
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
+//fin app config
 
 // app init
 export function init_app(appLoadService: AppLoadService): () => Promise<any>  {
@@ -100,6 +91,20 @@ class AppLoadService {
   }
 }
 // fin app init
+
+// redux init
+export interface AppState {
+  destinos: DestinosViajesState;
+}
+
+const reducers: ActionReducerMap<AppState> = {
+  destinos: reducerDestinosViajes
+};
+
+const reducersInitialState = {
+  destinos: initializeDestinosViajesState()
+};
+// redux fin init
 
 // dexie db
 export class Translation {
@@ -180,7 +185,9 @@ function HttpLoaderFactory(http: HttpClient) {
     VuelosComponentComponent,
     VuelosMainComponentComponent,
     VuelosMasInfoComponentComponent,
-    VuelosDetalleComponent
+    VuelosDetalleComponent,
+    EspiameDirective,
+    TrackearClickDirective
   ],
   imports: [
     BrowserModule,
@@ -199,14 +206,17 @@ function HttpLoaderFactory(http: HttpClient) {
           useFactory: (HttpLoaderFactory),
           deps: [HttpClient]
       }
-    })
+    }),
+    NgxMapboxGLModule,
+    BrowserAnimationsModule
   ],
   providers: [
-    AuthService, UsuarioLogueadoGuard,
+    AuthService,
+    MyDatabase,
+     UsuarioLogueadoGuard,
     { provide: APP_CONFIG, useValue: APP_CONFIG_VALUE },
     AppLoadService,
-    { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppLoadService], multi: true },
-    MyDatabase
+    { provide: APP_INITIALIZER, useFactory: init_app, deps: [AppLoadService], multi: true } 
   ],
   bootstrap: [AppComponent]
 })

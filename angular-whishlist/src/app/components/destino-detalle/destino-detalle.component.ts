@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DestinosApiClient } from './../../models/destinos-api-client.model';
 import { DestinoViaje } from './../../models/destino-viaje.model';
 import { ActivatedRoute } from '@angular/router';
+import { LngLatLike, Marker, PointLike, Anchor } from 'mapbox-gl';
 
 @Component({
   selector: 'app-destino-detalle',
@@ -11,12 +12,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DestinoDetalleComponent implements OnInit {
   destino: DestinoViaje;
+  style = {
+    sources: {
+      world: {
+        type: 'geojson',
+        data: 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json'
+      }
+    },
+    version: 8,
+    layers: [{
+      'id': 'countries',
+      'type': 'fill',
+      'source': 'world',
+      'layout': {},
+      'paint': {
+        'fill-color': '#6F788A'
+      }
+    }]
+  };
 
   constructor(private route: ActivatedRoute, private destinosApiClient: DestinosApiClient) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.destino = this.destinosApiClient.getById(id);
   }
-
+  
 }

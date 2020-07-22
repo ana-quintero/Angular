@@ -17,7 +17,7 @@ export class ListaDestinosComponent implements OnInit {
   all;
   
   constructor(
-    private destinosApiClient: DestinosApiClient,
+    public destinosApiClient: DestinosApiClient,
     private store: Store<AppState>
     ) {
     this.onItemAdded = new EventEmitter();

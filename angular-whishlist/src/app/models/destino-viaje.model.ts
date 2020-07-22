@@ -4,7 +4,7 @@ export class DestinoViaje {
   selected: boolean;
   servicios: string[];
   id = uuid();
-  public votes: number = 0;
+  public votes = 0;
 
   constructor(public nombre: string, public imagenUrl: string){ 
 	  this.servicios = ['pileta', 'desayuno'];
